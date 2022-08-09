@@ -1,5 +1,7 @@
 package com.example.springdemo1.department;
 
+import com.example.springdemo1.employee.Employee;
+import com.example.springdemo1.tasks.Task;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,6 +23,18 @@ public class Department {
     )
     private Long deptId;
     private String departmentName;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "task_id", referencedColumnName = "taskId")
+    private Task taskTable;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "emp_id", referencedColumnName = "empId")
+    private Employee empTable;
+
+//    @OneToOne(mappedBy = "deptTable")
+//    private Employee deptEmployee;
+
 
     public Department() {
     }

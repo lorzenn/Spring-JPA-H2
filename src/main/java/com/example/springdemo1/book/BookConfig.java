@@ -15,13 +15,13 @@ public class BookConfig {
     CommandLineRunner bookCommandLineRunner(BookRepository bookRepository) {
         return  args -> {
             Book book1 = new Book(
-                    "Design Patterns"
+                    "Design Patterns", "Lorenz", 10L
             );
             Book book2 = new Book(
-                    "SRP"
+                    "SRP", "Lorenz", 10L
             );
             Book book3 = new Book(
-                    "DI"
+                    "DI", "Lorenz", 10L
             );
 
             bookRepository.saveAll(

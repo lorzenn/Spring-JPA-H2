@@ -1,13 +1,19 @@
 package com.example.springdemo1.book;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
 @Entity
 @Table
+@NoArgsConstructor
+@AllArgsConstructor
 public class Book {
+
+
 
     @Id
     @SequenceGenerator(
@@ -20,17 +26,16 @@ public class Book {
             generator = "book_sequence"
     )
     private Long bookId;
+
+    public Book(String bookName, String author, Long bookCount) {
+        this.bookName = bookName;
+        this.author = author;
+        this.bookCount = bookCount;
+    }
+
     private String bookName;
+    private String author;
+    private Long bookCount;
 
-    public Book() {
-    }
 
-    public Book(Long bookId, String bookName) {
-        this.bookId = bookId;
-        this.bookName = bookName;
-    }
-
-    public Book(String bookName) {
-        this.bookName = bookName;
-    }
 }

@@ -1,8 +1,8 @@
-package com.example.springdemo1.book;
+package com.example.springdemo1.tasks;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BookRepository extends JpaRepository<Book, Long> {
+public interface TaskRepository extends JpaRepository<Task, Long> {
 }

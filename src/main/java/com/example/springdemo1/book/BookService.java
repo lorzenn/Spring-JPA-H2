@@ -1,40 +1,25 @@
 package com.example.springdemo1.book;
 
-import com.example.springdemo1.department.Department;
-import com.example.springdemo1.department.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
-public class BookService {
 
-    private final BookRepository bookRepository;
+public interface BookService {
 
-    @Autowired
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+    void initDB();
 
-    public List<Book> getBooks() {
-        return bookRepository.findAll();
-    }
+    List<Book> getBooks();
+    Book getBook(Long bookId);
+    void createBook(Book book);
+    Book updateBook(Book book);
+    void deleteBook(Long bookId);
 
-    public Book getBook(Long id) {
-        return bookRepository.findById(id).get();
-    }
+    List<Book> findBooksWithSorting(String field);
+    Page<Book> findBooksWithPagination(int offset, int pageSize);
+    Page<Book> findBooksWithPaginationAndSorting(int offset, int pageSize, String field);
 
-    public void createBook(Book book) {
-        new ResponseEntity<>(bookRepository.save(book), HttpStatus.CREATED);
-    }
-
-    public Book updateBook(Book book) {
-        return bookRepository.save(book);
-    }
-
-    public void deleteBook(Long bookId) {
-        bookRepository.deleteById(bookId);
-    }
 }
